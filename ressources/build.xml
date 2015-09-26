@@ -1,0 +1,64 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Spigot" default="dist" basedir=".">
+
+    <description> Initialise Spigot </description>
+
+     
+
+    <!-- set global properties for this build -->
+
+    <property name="src" location="src"/>
+
+    <property name="build" location="build"/>
+
+    <property name="dist" location="dist"/>
+
+     
+
+    <target name="init">
+
+        <!-- Create the time stamp -->
+
+        <tstamp/>
+
+        <!-- Create the build directory structure used by compile -->
+
+        <mkdir dir="${build}"/>
+	<get src="https://hub.spigotmc.org/jenkins/job/BuildTools/lastBuild/artifact/target/BuildTools.jar" dest="${build}"/>
+    </target>
+
+    <target name="compile" depends="init"
+
+        description="compile the source " >
+
+        <!-- Compile the java code from ${src} into ${build} -->
+
+        <java -jar ="${build}/BuildTools.jar"/>
+
+    </target>
+
+    <target name="dist" depends="compile"
+
+        description="generate the library" >
+
+        <!-- Create the distribution directory -->
+
+        <mkdir dir="${dist}/lib"/>
+
+        <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+	 <copy file="${build}/blablabla" tofile="${dist}/lib"/>
+
+    </target>
+
+    <target name="clean" description="clean up" >
+
+        <!-- Delete the ${build} and ${dist} directory trees -->
+
+        <delete dir="${build}"/>
+
+        <delete dir="${dist}"/>
+
+    </target>
+
+</project>
