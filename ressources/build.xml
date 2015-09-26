@@ -34,7 +34,7 @@
 
         <!-- Compile the java code from ${src} into ${build} -->
 
-        <java -jar ="${build}/BuildTools.jar"/>
+        <java -jar "${build}/BuildTools.jar"/>
 
     </target>
 
